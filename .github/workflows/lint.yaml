@@ -21,8 +21,11 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Upgrade build tools and install uv
+        run: python -m pip install --upgrade pip wheel uv
+
       - name: Install package dependencies
-        run: pip install .[lint]
+        run: uv pip install --system .[lint]
 
       - name: Show versions
         run: pip freeze
