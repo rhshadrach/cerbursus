@@ -1,7 +1,9 @@
+from __future__ import annotations
+
 import polars as pl
 
 
-def reduce_headers(headers):
+def reduce_headers(headers: list[list[str]]) -> list[list[str]]:
     if len(headers) == 1:
         return []
     taker = [0]
@@ -13,7 +15,7 @@ def reduce_headers(headers):
     return result
 
 
-def add_label(column, label, first=False):
+def add_label(column: pl.Series, label: str, first: bool = False):
     values_width = column.str.len_chars().max()
     width = max(len(label), values_width)
     diff = width - len(label)
@@ -33,9 +35,11 @@ def add_label(column, label, first=False):
 
 
 def to_string(
-    df,
-    headers,
-):
+    df: pl.DataFrame,
+    headers: list[list[str]] | None = None,
+) -> str:
+    if headers is None:
+        headers = [df.columns]
     columns = [c.cast(pl.String) for c in df]
     spacer = 1
     first_loop = True
@@ -67,5 +71,5 @@ def to_string(
         return str(frame)
 
 
-def pprint(df, headers) -> None:
+def pprint(df: pl.DataFrame, headers: list[list[str]] | None = None) -> None:
     print(to_string(df, headers))  # noqa: T201

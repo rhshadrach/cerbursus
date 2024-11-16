@@ -132,3 +132,13 @@ def test_three_levels_long_values():
         1 4     10000000 7
         2 5     10000000 7 """
     assert_match(result, expected)
+
+
+def test_no_headers():
+    result = "\n" + cerbursus.to_string(pl.DataFrame({"a": [1, 1, 2], "b": [3, 4, 5]}))
+    expected = """
+ a b
+ 1 3
+ 1 4
+ 2 5 """
+    assert_match(result, expected)
