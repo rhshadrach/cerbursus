@@ -36,7 +36,7 @@ jobs:
       - name: Test package
         run: |
           python -c "import cerbursus; \
-            import polars as pl
+            import polars as pl; \
             cerbursus.pprint(pl.DataFrame({'a': [1, 1, 2], 'b': [3, 4, 5]})) \
           "
 
