@@ -27,7 +27,7 @@ jobs:
           python-version: ${{ matrix.python_version }}
 
       - name: Upgrade build tools and install uv
-        run: pip install --upgrade pip wheel uv
+        run: python -m pip install --upgrade pip wheel uv
 
       - name: Install package dependencies
         run: uv pip install --system .[test]
