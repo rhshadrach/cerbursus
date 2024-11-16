@@ -28,6 +28,8 @@ prints
 
 ```
 
+One can also use `cerbursus.to_string` to get the result as a string instead of printing.
+
 ## Installation
 
 ```bash
