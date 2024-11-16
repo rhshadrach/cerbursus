@@ -13,7 +13,7 @@ cerburus.pprint(
     df,
     headers=[
         ["1st title", "1st title", "2nd title", "2nd title"],
-        ["1st subtitle", "2nd subtitle", "1st subtitle", "2nd subtitle"]
+        ["1st subtitle", "2nd subtitle", "1st subtitle", "2nd subtitle"],
     ],
 )
 ```
