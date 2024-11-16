@@ -26,7 +26,9 @@ def add_label(column, label, first=False):
         diff = width - values_width
         left = diff // 2 + diff % 2
         right = diff // 2
-        result = pl.concat([pl.Series(values=[label]), " " * left + column + " " * right])
+        result = pl.concat(
+            [pl.Series(values=[label]), " " * left + column + " " * right]
+        )
     return result
 
 
@@ -55,15 +57,15 @@ def to_string(
     assert len(columns) == 1
     frame = columns[0].to_frame()
     with pl.Config(
-            set_tbl_formatting="NOTHING",
-            set_tbl_hide_dataframe_shape=True,
-            set_tbl_hide_dtype_separator=True,
-            set_tbl_hide_column_data_types=True,
-            set_tbl_hide_column_names=True,
-            fmt_str_lengths=1_000_000,
+        set_tbl_formatting="NOTHING",
+        set_tbl_hide_dataframe_shape=True,
+        set_tbl_hide_dtype_separator=True,
+        set_tbl_hide_column_data_types=True,
+        set_tbl_hide_column_names=True,
+        fmt_str_lengths=1_000_000,
     ):
         return str(frame)
 
 
 def pprint(df, headers) -> None:
-    print(to_string(df, headers))
+    print(to_string(df, headers))  # noqa: T201
